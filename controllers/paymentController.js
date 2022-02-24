@@ -45,10 +45,10 @@ module.exports.initPayment = async (req, res) => {
 
     // Set the urls
     payment.setUrls({
-        success: "https://sleepy-retreat-45181.herokuapp.com/api/payment/success", // If payment Succeed
-        fail: "https://sleepy-retreat-45181.herokuapp.com/api/payment/fail", // If payment failed
-        cancel: "https://sleepy-retreat-45181.herokuapp.com/api/payment/cancel", // If user cancel payment
-        ipn: "https://sleepy-retreat-45181.herokuapp.com/api/payment/ipn", // SSLCommerz will send http post request in this link
+        success: "https://floating-hollows-49516.herokuapp.com/api/payment/success", // If payment Succeed
+        fail: "https://floating-hollows-49516.herokuapp.com/api/payment/fail", // If payment failed
+        cancel: "https://floating-hollows-49516.herokuapp.com/api/payment/cancel", // If user cancel payment
+        ipn: "https://floating-hollows-49516.herokuapp.com/api/payment/ipn", // SSLCommerz will send http post request in this link
     });
 
     // Set order details
