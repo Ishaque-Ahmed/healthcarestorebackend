@@ -43,12 +43,12 @@ module.exports.getPrescriptions = async (req, res) => {
 
     let order = req.query.order === 'desc' ? -1 : 1;
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let limit = req.query.limit ? parseInt(req.query.limit) : 10;
+    //let limit = req.query.limit ? parseInt(req.query.limit) : 10;
 
     const prescriptions = await Prescription.find()
         .select({ photo: 0 })
         .sort({ [sortBy]: order })
-        .limit(limit)
+        //.limit(limit)
         .populate('user', '_id');
     return res.status(200).send(prescriptions);
 }
@@ -80,7 +80,7 @@ module.exports.updatePrescriptionByStatus = async (req, res) => {
 
     form.parse(req, (err, fields, files) => {
         if (err) return res.status(400).send("Something Wrong!");
-        const updatedFields = _.pick(fields, ["curStatus"]);
+        const updatedFields = _.pick(fields, ["curStatus", "price"]);
 
         _.assignIn(prescription, updatedFields);
         prescription.save((err, result) => {
@@ -101,4 +101,8 @@ module.exports.deletePrescription = async (req, res) => {
     } catch (err) {
         res.status(404).send("Prescription Id was not found!");
     }
+}
+
+module.exports.getUserSpecificPrescriptions = async (req, res) => {
+
 }
