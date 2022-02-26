@@ -61,6 +61,13 @@ module.exports.getPrescriptionByUserId = async (req, res) => {
 
     return res.status(200).send(prescriptions);
 }
+module.exports.getOrderedPrescription = async (req, res) => {
+    const userId = req.headers.userid;
+    const prescriptions = await Prescription.find({ user: userId, curStatus: 'UserConfirmed' });
+    if (!prescriptions) return res.status(404).send("Not Found");
+
+    return res.status(200).send(prescriptions);
+}
 
 module.exports.getPrescriptionPhoto = async (req, res) => {
     const prescriptionId = req.params.id;
